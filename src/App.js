@@ -1,22 +1,20 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Atm from './components/Atm';
 
 function App() {
+  //Toggle ATM
+  const [showATM, setShowATM] = useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>React ATM 2.0</h1>
+        <button
+          onClick={()=> setShowATM(!showATM)}>
+          {showATM ? "Dölj ATM" : "Visa ATM"} 
+        </button>
+        {showATM && <Atm/>}
       </header>
     </div>
   );
