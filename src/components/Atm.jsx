@@ -93,12 +93,16 @@ const Atm = () => {
             />
           ))}
         </div>
+        <button onClick={()=>setAmount(0)}>Clear</button>
         <br/>
         <button 
           className="btn success"
+          disabled={convertedAmount > balance}
           onClick={()=>withdraw(amount)}>
             Withdraw money
         </button>
+        <br/>
+        {convertedAmount > balance && <small>There's not enough money. Select smaller amount.</small>}
       </div>
       <DepositForm 
         depositAmount={depositAmount}
