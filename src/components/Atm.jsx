@@ -1,5 +1,6 @@
 import DepositForm from "./DepositForm";
 import { useState, useEffect } from "react";
+import CurrencyBtn from "./CurrencyBtn";
 
 const Atm = () => {
   // Currencies supported
@@ -83,18 +84,13 @@ const Atm = () => {
 
       {/* Change currency */}
       <div>
-        <button onClick={()=>changeCurrency("SEK")}>
-          SEK
-        </button>
-        <button onClick={()=>changeCurrency("EURO")}>
-          EURO
-        </button>
-        <button onClick={()=>changeCurrency("USD")}>
-          USD
-        </button>
-        <button onClick={()=>changeCurrency("MXN")}>
-          MXN
-        </button>
+        {currencies.map((c, index) => (
+          <CurrencyBtn 
+            key={index} 
+            ISOCode={c.ISOCode} 
+            changeCurrency={changeCurrency}
+          />
+        ))}
       </div>
       <br/>
       <button onClick={()=>withdraw(amount)}>Withdraw money</button>
