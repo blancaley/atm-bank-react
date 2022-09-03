@@ -2,6 +2,21 @@ import DepositForm from "./DepositForm";
 import { useState, useEffect } from "react";
 
 const Atm = () => {
+  // Currencies supported
+  const currencies = [{
+    ISOCode: "SEK",
+    rate: "1"
+  },{
+    ISOCode: "EURO",
+    rate: "10.75"
+  },{
+    ISOCode: "USD",
+    rate: "10.78"
+  },{
+    ISOCode: "MXN",
+    rate: "0.54"
+  }];
+
   // Amount to withdraw
   const [amount, setAmount] = useState(0);
   const [convertedAmount, setConvertedAmount] = useState(null);
@@ -16,24 +31,8 @@ const Atm = () => {
 
   // Converts amount to other currencies
   const convertAmount = (curr) => {
-    // In Swedish Crowns
-    const SEK = 1;
-    const EURO = 10.75;
-    const USD = 10.78;
-    const MXN = 0.54;
-
-    if (curr === "SEK") { 
-      setConvertedAmount(amount * SEK);
-    }
-    if (curr === "EURO") { 
-      setConvertedAmount(amount * EURO);
-    }
-    if (curr === "USD") { 
-      setConvertedAmount(amount * USD);
-    }
-    if (curr === "MXN") { 
-      setConvertedAmount(amount * MXN);
-    }
+    const currency = currencies.find(c => c.ISOCode === curr);
+    setConvertedAmount(amount * currency.rate);
   }
   // Previews the amount to withdraw
   const changeAmount = (value) => {
