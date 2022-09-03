@@ -65,35 +65,41 @@ const Atm = () => {
   return (
     <div>
       <h2>Current balance: {balance} SEK</h2>
-      <h2>Amount to withdraw: {amount} {currency}</h2>
-      {/* Show amount in SEK if other currency is selected */}
-      {currency !== "SEK" && <p>({convertedAmount} SEK)</p>}
+      <div className="card">
+        <h3>Amount to withdraw: {amount} {currency}</h3>
+        {/* Show amount in SEK if other currency is selected */}
+        {currency !== "SEK" && <p>({convertedAmount} SEK)</p>}
 
-      {/* Add money */}
-      <div>
-        <button onClick={()=>changeAmount(100)}>
-          +100
-        </button>
-        <button onClick={()=>changeAmount(500)}>
-          +500
-        </button>
-        <button onClick={()=>changeAmount(1000)}>
-          +1000
+        {/* Add money */}
+        <div>
+          <button onClick={()=>changeAmount(100)}>
+            +100
+          </button>
+          <button onClick={()=>changeAmount(500)}>
+            +500
+          </button>
+          <button onClick={()=>changeAmount(1000)}>
+            +1000
+          </button>
+        </div>
+
+        {/* Change currency */}
+        <div>
+          {currencies.map((c, index) => (
+            <CurrencyBtn 
+              key={index} 
+              ISOCode={c.ISOCode} 
+              changeCurrency={changeCurrency}
+            />
+          ))}
+        </div>
+        <br/>
+        <button 
+          className="btn success"
+          onClick={()=>withdraw(amount)}>
+            Withdraw money
         </button>
       </div>
-
-      {/* Change currency */}
-      <div>
-        {currencies.map((c, index) => (
-          <CurrencyBtn 
-            key={index} 
-            ISOCode={c.ISOCode} 
-            changeCurrency={changeCurrency}
-          />
-        ))}
-      </div>
-      <br/>
-      <button onClick={()=>withdraw(amount)}>Withdraw money</button>
       <DepositForm 
         depositAmount={depositAmount}
         setDepositAmount={setDepositAmount}

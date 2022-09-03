@@ -12,7 +12,7 @@ function App() {
         <h1>React ATM 2.0</h1>
         <button
           onClick={()=> setShowATM(!showATM)}>
-          {showATM ? "Dölj ATM" : "Visa ATM"} 
+          {showATM ? "Hide ATM" : "Show ATM"} 
         </button>
         {showATM && <Atm/>}
       </header>

@@ -11,14 +11,17 @@ const DepositForm = ({ depositAmount, setDepositAmount, deposit }) => {
   }
 
   return (
-    <div>
+    <div className="card">
       <h3>Deposit money (SEK)</h3>
       <form>
         <input 
           type="number"
           id="deposit"
           onChange={onChange}/>
-        <button onClick={onSubmit}>Deposit</button>
+        <br/>
+        <button 
+          className="btn success"
+          onClick={onSubmit}>Deposit</button>
       </form>
     </div>
   );
